@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+       *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background: #1f242d;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .navbar{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 25px 9%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        visibility: hidden;
+        opacity: 0;
+        animation: show-content 1 .5s linear forwards;
+        animation-delay: 1.2s;
+    }
+    @keyframes show-content {
+        100% {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    .navbar .logo{
+        font-size: 30px;
+        font-weight: 700;
+    }
+    .navbar ul{
+        display: flex;
+    }
+    .navbar ul li{
+        list-style: none;
+        margin-left: 35px;
+    }
+    .navbar ul li a {
+        font-size: 20px;
+        font-weight: 500;
+        transition: .5s;
+    }
+    .navbar ul li:hover a,
+    .navbar ul li.active a{
+        color: #52ce0f;
+    }
+    .home{
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        height: 100vh;
+        padding: 60px 9% 0;
+        color: white;
+        visibility: hidden;
+        opacity: 0;
+        animation: show-content 1 .5s linear forwards;
+        animation-delay: 1.6s;
+    }
+
+    .home-info h1{
+        font-size: 55px;
+    }
+    .home-info h2{
+        display: inline-block;
+        font-size: 32px;
+        margin-left: -10px;
+    }
+    .home-info h2 span{
+        position: relative;
+        display: inline-block;
+        color: transparent;
+        -webkit-text-stroke: .7px #3daef0;
+        animation: display-text 16s linear infinite;
+        animation-delay: calc(-4s * var(--i));
+    }
+    @keyframes display-text {
+        25%,
+        100% {
+            display: none;
+        }
+    }
+    .home-info h2 span::before {
+        content: attr(data-text);
+        position: absolute;
+        width:0;
+        border-right: 2px solid #7cf03d;
+        color: #7cf03d;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: fill-text 4s linear infinite;
+    }
+    @keyframes fill-text{
+        10%,
+        100%{
+            width: 0;
+        }
+        70%,
+        90%{
+            width: 100%;
+        }
+    }
+    .home-info p {
+        font-size: 16px;
+        margin: 10px 0 25px;
+    }
+    .home-info .btn-sci {
+        display: flex;
+        align-items: center;
+    }
+    .btn{
+        display: inline-block;
+        padding: 10px 30px;
+        background: #7cf03d;
+        border: 2px solid #7cf03d;
+        border-radius: 40px;
+        box-shadow: 0 0 10px #7cf03d;
+        font-size: 16px;
+        color: #1f242d;
+        font-weight: 600;
+        transition: .5s;
+    }
+    .btn:hover{
+        background: transparent;
+        color:#7cf03d;
+        box-shadow: none;
+    }
+    .home-info .btn-sci .sci {
+        margin-left: 20px;
+    }
+    .home-info .btn-sci .sci a {
+        display: inline-flex;
+        padding: 8px;
+        border: 2px solid #7cf03d;
+        border-radius: 50%;
+        font-size: 20px;
+        color: #7cf03d;
+        margin: 0 8px;
+        transition: .5s;
+    }
+    .home-info .btn-sci .sci a:hover {
+        background: #7cf03d;
+        color: #1f242d;
+        box-shadow: 0 0 10px #7cf03d;
+    }
+    .home-img .img-box{
+        position: relative;
+        width: 32vw;
+        height: 32vw;
+        border-radius: 50%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .home-img .img-box::before,
+    .home-img .img-box::after
+    {
+        content: 'red';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: conic-gradient(transparent,transparent,transparent,#0693e6);
+        transform: rotate(0deg);
+        animation: rotate-border 10s linear infinite;
+    }
+    .home-img .img-box::after{
+        animation-delay: -5s;
+    }
+    @keyframes rotate-border {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .home-img .img-box .img-item{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /* background:  conic-gradient(transparent,transparent,transparent,#3daef0); */
+        transform: rotate(0deg);
+        border-radius: 50%;
+        border: .1px solid aqua;
+        background: black;
+        display: flex;
+        justify-content: center;
+        z-index: 1;
+        overflow: hidden;
+        
+    }
+    .home-img .img-box .img-item img {
+        position: absolute;
+        top: 30px;
+        mix-blend-mode: lighten;
+        display: block;
+        width: 85%;
+        object-fit: cover;
+    }
+    .bars-animation {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        z-index: -1;
+    }
+    .bars-animation .bar {
+        width: 100%;
+        height: 100%;   
+        background: #1f242d;
+        border: 2px solid green;
+        transform: translateY(-100%);
+        animation: show-bars .9s ease-in-out forwards;
+        animation-delay: calc(.2s * var(--i));
+    }
+    @keyframes show-bars {
+        100% {
+            transform: translateY(0%);
+        }
+    }
+
+    .sci a{
+    display:inline-flex;
+    border:2px solid #7cf03d;
+    border-radius:50%;
+    padding:8px;
+    font-size:20px;
+    margin:0 5px;
+    transition:.5s;
+}
+.sci a:hover{background:#3c1cf1;color:#1f242d;}
+ .footer {
+            background: #343a40;
+            color: white;
+            padding: 40px 0;
+        }
+        .modal-content {
+            border-radius: 15px;
+        }
+    #Skills_container{
+        background-color: whitesmoke;
+        height: 200px;
+    }
+    #contact{
+        background-color:black(219, 108, 186);
+    }
+    .section{
+        min-height: 40vh;
+    }
+    .nav-link.active {
+    color: #7cf03d !important;
+}
+
+</style>
+
+<body>
+  <!-- <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>  -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container"> 
+            <a class="navbar-brand" href="#"><i class="fas fa-palette"></i> My Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+          
+                    <ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+    <li class="nav-item"><a class="nav-link" href="#portfolio">Project</a></li>
+    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+</ul>
+
+        
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    
+
+
+    <div class="bars-animation">
+        <div class="bar" style="--i:6;"></div>
+        <div class="bar" style="--i:5;"></div>
+        <div class="bar" style="--i:4;"></div>
+        <div class="bar" style="--i:3;"></div>
+        <div class="bar" style="--i:2;"></div>
+        <div class="bar" style="--i:1;"></div>
+    </div>
+    <section class="home" id="home">
+
+        <div class="home-info">
+            <h1>InamUllah</h1>
+            <h2>I'm a
+                <span style="--i:4;" data-text="Frontend Developer
+                ">Frontend Developer</span>
+                <span style="--i:3;" data-text="Hacker">Hacker</span>
+                <span style="--i:2;" data-text="Youtuber">Youtuber</span>
+                <span style="--i:1;" data-text="Designer">Designer</span>
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam doloremque hic iste, molestiae minima asperiores pariatur minus? Cupiditate, reiciendis? Vitae, porro dolores rem alias reprehenderit eius laborum autem fugiat maxime!</p>
+            <div class="btn-sci">
+
+                <!-- <a href="#" class="btn">Download CV</a> -->
+            <div class="d-flex align-items-center mt-4">
+          <a href="#" class="btn me-3">Download CV</a>
+          <div class="sci">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-youtube"></i>
+     <i class="bi bi-github"></i>
+            
+            </a>
+          </div>
+        </div>
+            </div>`
+        </div>
+        <div class="home-img">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="img/inam.jpg"  alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section bg-light">
+
+    <div class="container">
+
+        <h2 class="text-center mb-5" style="color: black;">
+            <i class="fas fa-tools"></i> Services
+        </h2>
+        <div class="row">
+
+            <!-- Service 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="img/pexels-pixabay-39284.jpg" class="card-img-top" alt="Web Design">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-code"></i> Web Design</h5>
+                        <p class="card-text">Modern, responsive websites tailored to your brand.</p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="img/pexels-kevin-ku-92347-577585.jpg" class="card-img-top" alt="UI/UX">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-mobile-alt"></i> UI/UX Design</h5>
+                        <p class="card-text">Intuitive interfaces that enhance user experience.</p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="img/pexels-luis-gomes-166706-546819.jpg" class="card-img-top" alt="Branding">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="fas fa-paint-brush"></i> Responsive Coding</h5>
+                        <p class="card-text">Logo and identity design to make you stand out.</p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5"><i class="fas fa-user"></i> <a href="#about"></a> About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                     <div class="home-img">
+            <div class="img-box">
+
+                <div class="img-item">
+                    <img src="img/inam-2.jpg" class="img-fluid rounded-circle shadow" alt="Profile">
+                </div>
+            </div>
+        </div>
+                </div>
+                <div class="col-lg-6">
+                     <p>I am a passionate and dedicated Full Stack Developer with expertise in building custom WordPress websites, React.js applications, and backend systems using Node.js, MongoDB, and RESTful APIs. With a strong foundation in web technologies, I specialize in creating responsive, scalable, and user-friendly digital solutions for businesses across various industries.</p>
+                    <p>We offer a variety of services tailored to your needs with a focus on quality and client satisfaction. Our platform encourages open discussions to ensure clear communication and the best possible outcomes. Let's connect and bring your ideas to life! <i class="fas fa-camera text-primary"></i></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+    <div class="container">
+        <h2 class="text-center mb-5">
+        </h2>
+        <div class="row">
+
+            <!-- HTML / CSS -->
+            <div class="col-lg-3 col-md-6 text-center mb-4">
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar bg-primary" style="width: 90%;">
+                        HTML / CSS 90%
+                    </div>
+                </div>
+                <i class="fas fa-code fa-2x text-primary"></i>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="col-lg-3 col-md-6 text-center mb-4">
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar bg-success" style="width: 85%;">
+                        JavaScript 85%
+                    </div>
+                </div>
+                <i class="fab fa-js-square fa-2x text-success"></i>
+            </div>
+
+            <!-- Bootstrap -->
+            <div class="col-lg-3 col-md-6 text-center mb-4">
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar bg-warning" style="width: 80%;">
+                        Bootstrap 80%
+                    </div>
+                </div>
+                <i class="fab fa-bootstrap fa-2x text-warning"></i>
+            </div>
+
+            <!-- Python -->
+            <div class="col-lg-3 col-md-6 text-center mb-4">
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar bg-danger" style="width: 75%;">
+                        Python 75%
+                    </div>
+                </div>
+                <i class="fab fa-python fa-2x text-danger"></i>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5"><i class="fas fa-history"></i> My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5><i class="fas fa-rocket"></i> 2025: Started C++</h5>
+                    <p>Launched my design career with small projects.</p>
+                </div>
+                <div class="timeline-item">
+                    <h5><i class="fas fa-trophy"></i> 2025: Python Projects</h5>
+                    <p>Worked on a major an apps Launched.</p>
+                </div>
+                <div class="timeline-item">
+                    <h5><i class="fas fa-users"></i> 2026: Started with Web Developing</h5>
+                    <p>Expanded to a team and more complex projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="portfolio">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">PROJECT</h2>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs justify-content-center mb-4" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all">
+                    All Projects
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tours">
+                    Tours
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#ecommerce">
+                    E-commerce
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#blog">
+                    Blog
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#services">
+                    Services
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+
+            <!-- All Projects -->
+            <div class="tab-pane fade show active" id="all">
+                <div class="row g-4">
+                    <div class="col-md-4" style="height: 60vh;">
+                        <div class="card h-100">
+                            <img src="img/pexels-thisisengineering-3861969.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <h5>Tours Website</h5>
+                                <p>Travel website for Hunza, Skardu, and Khaplu tours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="height: 60vh;">
+                        <div class="card h-100">
+                            <img src="img/pexels-n-voitkevich-6214454.jpg" style="height: 200px;" class="card-img-top">
+                            <div class="card-body">
+                                <h5>E-commerce Website</h5>
+                                <p>Online store with payment & cart system.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="height: 60vh;">
+                        <div class="card h-100">
+                            <img src="img/pexels-designecologist-1779487.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5>Blog Website</h5>
+                                <p>Modern blogging platform with CMS.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tours -->
+            <div class="tab-pane fade" id="tours">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="img/pexels-markusspiske-177598.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5>Tours Website</h5>
+                                <p>Tour booking website for northern areas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce -->
+            <div class="tab-pane fade" id="ecommerce">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="img/pexels-sanketgraphy-17887854.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5>E-commerce Website</h5>
+                                <p>Fully functional online shopping system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog -->
+            <div class="tab-pane fade" id="blog">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="img/pexels-pixabay-267399.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5>Blog Website</h5>
+                                <p>SEO-friendly blogging platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="tab-pane fade" id="services">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="img/pexels-kevin-ku-92347-577585.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5>Services Website</h5>
+                                <p>Business service website with booking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+     <section id="contact" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Me</h2>
+            <div class="row">
+                 <div class="col-md-6">
+                    <h4>Contact Information</h4>
+         <ul>           
+            <li class="mb-4 d-flex align-items-start">
+            <i class="fas fa-envelope fs-4 me-3 text-primary"></i>
+            <div>
+              <strong>Email</strong><br>
+              sheenzada7@gmail.com<br>
+              <a href="sheenzada7@gmail.com" class="text-primary text-decoration-none">Send an email directly</a>
+            </div>
+          </li>
+           <li class="mb-4 d-flex align-items-start">
+            <i class="fas fa-user fs-4 me-3 text-primary"></i>
+            <div>
+              <strong>Portfolio</strong><br>
+              Professional Web Developer<br>
+              <a href="#" class="text-primary text-decoration-none">Visit my portfolio website</a>
+            </div>
+          </li>
+         </ul>
+                   
+                </div>
+                <div class="col-md-6">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+   
+
+    
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 My Portfolio. All rights reserved. | Follow us: 
+                <a href="#" class="text-white"><i class="bi bi-facebook"></i></a> 
+                <a href="#" class="text-white"><i class="bi bi-twitter"></i></a> 
+                <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+            </p>
+        </div>
+    </footer>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script>
+        // Theme toggle
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            toggle.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-earth"></i>' : '<i class="fas fa-star"></i>';
+        });
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script> -->
+</body>
+</html>
